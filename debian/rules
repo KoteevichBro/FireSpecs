@@ -1,0 +1,21 @@
+#!/usr/bin/make -f
+
+export DH_VERBOSE = 1
+export PYBUILD_NAME = firespecs
+
+%:
+	dh $@ --with python3
+
+override_dh_auto_install:
+	python3 setup.py install --root=$(CURDIR)/debian/firespecs --install-layout=deb
+	
+	# Install additional files
+	mkdir -p $(CURDIR)/debian/firespecs/usr/share/applications
+	install -m 644 debian/firespecs.desktop $(CURDIR)/debian/firespecs/usr/share/applications/
+	
+	mkdir -p $(CURDIR)/debian/firespecs/usr/share/pixmaps
+	cp -r icons $(CURDIR)/debian/firespecs/usr/share/firespecs/
+
+override_dh_auto_clean:
+	python3 setup.py clean -a
+	rm -rf build dist *.egg-info

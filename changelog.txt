@@ -1,0 +1,22 @@
+FireSpecs Changelog
+===================
+
+Version 3.0 (2026-02-14)
+------------------------
+* Added Matrix theme with terminal-style green/black colors
+* Improved theme switching
+* Minor bug fixes
+* Wider compatibility
+* Now open source!
+
+Version 2.0 (2026-02-07)
+------------------------
+* Added Battery information to Hardware section
+* Added USB device management with detach functionality
+* Improved USB tab with numbering and actions
+* Fixed table sizing and scrolling
+* Updated About dialog
+
+Version 1.0 (2025-01-01)
+------------------------
+* Initial release

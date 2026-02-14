@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=FireSpecs
+Comment=Hardware monitoring and system information tool
+Exec=/usr/bin/firespecs
+Icon=firespecs
+Terminal=false
+Categories=System;Monitor;
+Keywords=system;hardware;monitor;info;
