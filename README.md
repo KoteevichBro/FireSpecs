@@ -1,8 +1,8 @@
-# FireSpecs v3.0
+# FireSpecs
 
 **Hardware monitoring tool with GUI for Linux**
 
-FireSpecs is a system information and hardware monitoring application built with Python and Qt5. It provides real-time monitoring and detailed hardware information for Linux systems.
+<img width="1332" height="959" alt="1" src="https://github.com/user-attachments/assets/3be2b2c0-ea67-473f-bfc8-0c25dcd14643" />
 
 ## Overview
 
@@ -18,29 +18,11 @@ FireSpecs displays comprehensive system information through an intuitive tabbed 
 - **BIOS**: Version, vendor, release date (requires root)
 - **Battery**: Status and capacity information
 
-### USB Device Management
-- Lists all connected USB devices
-- Shows vendor, product, serial, and device class
-- Detach/eject functionality for removable devices
-
-### Storage Analysis
-- Disk partitions and usage information
-- File system type detection
-- Largest files scanner with delete capability
-
 ### User Interface
 - Three visual themes: Dark, Light, Matrix (terminal-style)
 - Real-time graphs for CPU, GPU, and memory usage
 - Tabbed interface: Hardware, USB Devices, Storage
 - Responsive design with smooth theme switching
-
-## Technical Details
-
-**Stack:**
-- Python 3.7+
-- PyQt5 for GUI
-- psutil for system metrics
-- dmidecode for hardware details (optional, requires root)
 
 **Architecture:**
 - Modular design with separate modules for UI, hardware detection, and storage
@@ -68,42 +50,6 @@ chmod +x FireSpecs-3.0-x86_64.AppImage
 pip3 install PyQt5 psutil
 python3 firespecs.py
 ```
-
-## Usage
-
-Run without root for basic information:
-```bash
-python3 firespecs.py
-```
-
-Run with root for complete hardware details:
-```bash
-sudo python3 firespecs.py
-```
-
-## Project Structure
-
-```
-Firespecs_v3/
-├── app/
-│   ├── ui.py        # Main interface (2,799 lines)
-│   ├── hardware.py  # Hardware detection (1,485 lines)
-│   ├── storage.py   # Storage analysis (118 lines)
-│   └── main.py      # Entry point (22 lines)
-├── icons/           # Application icons
-├── build/           # Pre-built packages
-├── firespecs.py     # Launcher script
-└── requirements.txt # Dependencies
-```
-
-**Total codebase:** ~4,424 lines of Python
-
-## Dependencies
-
-- python3
-- python3-pyqt5
-- python3-psutil
-- dmidecode (optional, for detailed hardware info)
 
 ## License
 
