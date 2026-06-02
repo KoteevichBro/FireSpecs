@@ -2,6 +2,8 @@
 
 **Hardware monitoring tool with GUI for Linux**
 
+<img width="3962" height="2240" alt="Снимок экрана от 2026-06-03 00-51-32-1" src="https://github.com/user-attachments/assets/1d9a82b3-9e43-4bc9-8ec1-3a8eaf7dc360" />
+
 FireSpecs is a system information and hardware monitoring application built with Python and Qt5. It provides real-time monitoring and detailed hardware information for Linux systems.
 
 ## Overview
