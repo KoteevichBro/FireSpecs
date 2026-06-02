@@ -12,13 +12,12 @@ FireSpecs displays comprehensive system information through an intuitive tabbed 
 
 ### Hardware Information
 - **CPU**: Model, cores, frequencies, cache, instruction sets, real-time usage graphs
-- **Memory**: RAM modules, totals, and swap statistics with usage visualization
-- **GPU**: Detection, VRAM/shared memory, live load and temperature (AMD, NVIDIA, Intel i915/xe)
-- **Display**: Resolutions (native, active, scaled), EDID details when available
-- **Network**: Interfaces, IP and MAC addresses
-- **Motherboard**: Manufacturer, model, serial (Full Access for blocked sysfs)
-- **BIOS**: Version, vendor, release date (Full Access for blocked sysfs)
-- **Battery**: Status, health, and capacity information
+- **Memory**: RAM and swap statistics with usage visualization
+- **GPU**: Detection, VRAM, live stats (AMD, NVIDIA, Intel)
+- **Display**: Resolutions and EDID details when available
+- **Motherboard**: Manufacturer, model, serial (Full Access)
+- **BIOS**: Version, vendor, release date (Full Access)
+- **Battery**: Status and capacity information
 
 ### USB Device Management
 - Lists all connected USB devices
@@ -31,117 +30,87 @@ FireSpecs displays comprehensive system information through an intuitive tabbed 
 - Largest files scanner with delete capability
 
 ### User Interface
-- Localized UI: English, German, Russian (Settings → Language)
-- Three visual themes: Dark, Light, Matrix (terminal-style); startup theme follows OS when set to System
-- Custom title bar and themed dialogs on Linux Wayland
+- Languages: English, German, Russian
+- Three visual themes: Dark, Light, Matrix (terminal-style)
+- Startup theme can follow OS light/dark
+- Custom title bar on Linux Wayland
 - Real-time graphs for CPU, GPU, and memory usage
 - Tabbed interface: Hardware, USB Devices, Storage
-- In-app **Full Access** (pkexec helper) without restarting the application
+- Full Access via pkexec without restarting the app
 
-## Requirements
+## Technical Details
 
+**Stack:**
 - Python 3.7+
-- PyQt5
-- psutil
-- Optional: `dmidecode`, `lsblk`, `xrandr`, `nvidia-smi`, `pkexec` (for Full Access and extended hardware data)
+- PyQt5 for GUI
+- psutil for system metrics
+- dmidecode for hardware details (optional, Full Access)
 
-## Quick Start
-
-```bash
-git clone https://github.com/firekernel/firespecs.git
-cd firespecs
-pip3 install -r requirements.txt
-python3 firespecs.py
-```
-
-Or use the helper script:
-
-```bash
-./run.sh
-```
+**Architecture:**
+- Modular design with separate modules for UI, hardware detection, and storage
+- Theme manager for consistent styling across components
+- Privileged helper for root actions while the GUI stays on the desktop session
+- Asynchronous operations for scanning and monitoring
 
 ## Installation
 
 ### From Package
 
-**Debian/Ubuntu:** download the `.deb` from [Releases](https://github.com/firekernel/firespecs/releases), then:
-
+**Debian/Ubuntu:**
 ```bash
 sudo dpkg -i firespecs_4.0_amd64.deb
-sudo apt-get install -f
+sudo apt-get install -f  # Install dependencies
 ```
 
 **Universal (AppImage):**
-
 ```bash
 chmod +x FireSpecs-4.0-x86_64.AppImage
 ./FireSpecs-4.0-x86_64.AppImage
 ```
 
 ### From Source
-
 ```bash
-pip3 install -r requirements.txt
+pip3 install PyQt5 psutil
 python3 firespecs.py
 ```
 
 ## Usage
 
-Most information is available without root. Enable **Full Access** from the toolbar (pkexec) for DMI fields, USB detach, and deleting protected files — the app stays open.
-
+Run without root for basic information:
 ```bash
 python3 firespecs.py
 ```
 
+Enable **Full Access** in the app (toolbar) for complete hardware details, USB detach, and protected file operations.
+
 ## Project Structure
 
 ```
+Firespecs_v4/
 ├── app/
-│   ├── main.py              # Application entry point
-│   ├── ui.py                # Main window, tabs, graphs
-│   ├── hardware.py          # Hardware detection (CPU, GPU, DMI, EDID, …)
-│   ├── storage.py           # Partitions and largest-files scan
-│   ├── gpu_stats.py         # Live GPU utilization and temperature
-│   ├── gpu_memory.py        # VRAM / shared memory detection
-│   ├── privilege.py         # Full Access (pkexec helper client)
-│   ├── privileged_helper.py # Root worker process
-│   ├── i18n.py              # Translations (en, de, ru)
-│   ├── system_theme.py        # OS light/dark detection
-│   ├── window_chrome.py       # Native / custom window decorations
-│   ├── custom_title_bar.py    # In-window title bar (Wayland)
-│   ├── themed_dialogs.py      # Themed message and About dialogs
-│   ├── ui_session.py          # Window geometry and preferences
-│   ├── display_scale.py       # UI scaling helper
-│   ├── platform_users.py      # Desktop user detection (pkexec)
-│   └── paths.py               # Install and resource paths
-├── icons/                   # UI and device icons
-├── tests/                   # Unit tests
-├── debian/                  # Debian package metadata
-├── build/                   # Local release artifacts (not in git)
-├── firespecs.py             # Launcher script
-├── run.sh                   # Dev launcher (sets PYTHONPATH)
-├── requirements.txt
-├── changelog.txt
-├── LICENSE
-└── attribution.txt          # Third-party icon credits
+│   ├── ui.py              # Main interface
+│   ├── hardware.py        # Hardware detection
+│   ├── storage.py         # Storage analysis
+│   ├── i18n.py            # Translations
+│   ├── privilege.py       # Full Access (pkexec)
+│   └── main.py            # Entry point
+├── icons/                 # Application icons
+├── build/                 # Pre-built packages
+├── firespecs.py           # Launcher script
+└── requirements.txt       # Dependencies
 ```
 
-## Tests
+## Dependencies
 
-```bash
-python3 -m unittest discover -s tests -v
-```
-
-## Building Packages
-
-See `debian/` for `.deb` packaging and place built `.deb` / AppImage files under `build/` (ignored by git). Example names: `firespecs_4.0_amd64.deb`, `FireSpecs-4.0-x86_64.AppImage`.
+- python3
+- python3-pyqt5
+- python3-psutil
+- dmidecode (optional, for detailed hardware info)
 
 ## License
 
-MIT License — see [LICENSE](LICENSE).
+MIT License - Open source
 
 ## Author
 
-Denis Oreshkin — [dm@koteevich.ru](mailto:dm@koteevich.ru)
-
-Project site: [firespecs.sourceforge.io](https://firespecs.sourceforge.io/)
+Denis Oreshkin <dm@koteevich.ru>
