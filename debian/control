@@ -8,5 +8,5 @@ Homepage: https://firespecs.sourceforge.io/
 
 Package: firespecs
 Architecture: all
-Depends: ${python3:Depends}, ${misc:Depends}, python3-pyqt5, python3-psutil
+Depends: ${misc:Depends}, python3:any, python3-pyqt5, python3-psutil
 Description: Hardware monitoring tool with GUI

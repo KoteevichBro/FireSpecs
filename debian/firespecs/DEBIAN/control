@@ -1,0 +1,10 @@
+Package: firespecs
+Version: 4.0-1
+Architecture: all
+Maintainer: Denis Oreshkin <dm@koteevich.ru>
+Installed-Size: 372
+Depends: python3:any, python3-pyqt5, python3-psutil
+Section: utils
+Priority: optional
+Homepage: https://firespecs.sourceforge.io/
+Description: Hardware monitoring tool with GUI

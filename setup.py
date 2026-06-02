@@ -1,22 +1,33 @@
 #!/usr/bin/env python3
-from setuptools import setup, find_packages
 import os
 
-# Read version from app
+from setuptools import find_packages, setup
+
 here = os.path.abspath(os.path.dirname(__file__))
+
+
+def _icon_data_files():
+    icons_root = os.path.join(here, "icons")
+    if not os.path.isdir(icons_root):
+        return []
+    files = []
+    for root, _dirs, filenames in os.walk(icons_root):
+        for name in filenames:
+            full = os.path.join(root, name)
+            files.append(os.path.relpath(full, here).replace(os.sep, "/"))
+    return [("share/firespecs/icons", files)] if files else []
+
 
 setup(
     name="firespecs",
-    version="3.0",
+    version="4.0",
     description="Hardware monitoring tool with GUI",
     author="Denis Oreshkin",
     author_email="dm@koteevich.ru",
     url="https://firespecs.sourceforge.io/",
-    packages=find_packages(),
+    packages=find_packages(exclude=["tests", "tests.*"]),
     include_package_data=True,
-    package_data={
-        "": ["*.png", "*.ico", "*.desktop"],
-    },
+    data_files=_icon_data_files(),
     install_requires=[
         "PyQt5",
         "psutil",
