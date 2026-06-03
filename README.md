@@ -85,23 +85,6 @@ python3 firespecs.py
 
 Enable **Full Access** in the app (toolbar) for complete hardware details, USB detach, and protected file operations.
 
-## Project Structure
-
-```
-Firespecs_v4/
-├── app/
-│   ├── ui.py              # Main interface
-│   ├── hardware.py        # Hardware detection
-│   ├── storage.py         # Storage analysis
-│   ├── i18n.py            # Translations
-│   ├── privilege.py       # Full Access (pkexec)
-│   └── main.py            # Entry point
-├── icons/                 # Application icons
-├── build/                 # Pre-built packages
-├── firespecs.py           # Launcher script
-└── requirements.txt       # Dependencies
-```
-
 ## Dependencies
 
 - python3
